@@ -1,12 +1,10 @@
 package com.time_mgnt;
 
-import java.util.List;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
-import com.time_mgnt.payloads.DoctorHospitalDetailsDto;
+import org.springframework.context.annotation.Bean;
 import com.time_mgnt.repositories.DoctorDetailsRepo;
 
 @SpringBootApplication
@@ -19,4 +17,8 @@ public class ManageAppointment_api {
 		
 	}
 
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	} 
 }
