@@ -50,7 +50,7 @@ public class DoctorDetailsServiceImpl implements DoctorDetailsService {
 	
 	@Override
 	public int insertDoctorDetails(int days, Time startTime, Time endTime, int openStatus,Long id) {
-		int result=this.timeAvailabilityRepo.insertDoctorDetails(days, startTime, endTime, openStatus,id);
+		int result=timeAvailabilityRepo.insertDoctorDetails(days, startTime, endTime, openStatus,id);
 		return result;
 	}
 	
@@ -61,8 +61,8 @@ public class DoctorDetailsServiceImpl implements DoctorDetailsService {
 	}
 	
 	@Override
-	public int deleteDoctorDetails(Long doctorId, Long timeId) {
-		int result=timeAvailabilityRepo.deleteDoctorDetails(doctorId, timeId);
+	public int deleteDoctorDetails(Long doctorId) {
+		int result=timeAvailabilityRepo.deleteDoctorDetails(doctorId);
 		return result;
 	}
 	
@@ -74,6 +74,12 @@ public class DoctorDetailsServiceImpl implements DoctorDetailsService {
 	public TimeAvailabilityDto timeAvailabilityTODto(TimeAvailability timeAvailability) {
 		TimeAvailabilityDto timeAvailabilityDto=this.modelMapper.map(timeAvailability, TimeAvailabilityDto.class);
 		return timeAvailabilityDto;
+	}
+
+	@Override
+	public List<DoctorHospitalDetailsDto> getDoctorDetailsByWeekDetails(List<String> ids) {
+		List<DoctorHospitalDetailsDto> list= doctorDetailsRepo.getDoctorDetailsByWeekDetails(ids);
+		return list;
 	}
 
 }

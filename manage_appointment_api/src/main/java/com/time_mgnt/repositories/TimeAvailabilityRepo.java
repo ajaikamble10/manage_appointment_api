@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.time_mgnt.models.TimeAvailability;
+import com.time_mgnt.payloads.DoctorHospitalDetailsDto;
 
 import jakarta.transaction.Transactional;
 
@@ -28,11 +29,10 @@ public interface TimeAvailabilityRepo extends JpaRepository<TimeAvailability, Lo
 	
 	@Transactional
 	@Modifying
-	@Query(value="delete from time_availability where doctor_id=?1 and time_id=?2",nativeQuery = true)
-	public int deleteDoctorDetails(Long doctorId,Long timeId);
+	@Query(value="delete from time_availability where doctor_id=?1",nativeQuery = true)
+	public int deleteDoctorDetails(Long doctorId);
 	
 	@Query(value="SELECT COUNT(*) FROM time_availability WHERE doctor_id = ?1 AND days = ?2",nativeQuery = true)
 	public int checkExistsByDoctorIdAndDays(Long doctorId, int days);
-	
 	
 }
